@@ -1,0 +1,31 @@
+﻿@model DAL.Db.BookingDetail
+
+    @{
+    ViewData["Title"] = "Booking Details";
+
+
+    }
+
+    @using (Html.BeginForm()){
+    <td class="form-group">
+        <Label>
+            Flight Where?
+        </Label>
+        @Html.TextBoxFor(x=>x.DepartureCity, new{ @class= "form-control"})
+
+    </td>
+
+    <td class="form-group">
+        <Label>
+            Arrive form?
+        </Label>
+        @Html.TextBoxFor(x=>x.ArrivalCity, new{ @class= "form-control"})
+
+    </td>
+    <input type="submit"  value="update" class="btn btn-primary" />
+
+
+
+    }
+
+    @Html.ActionLink("Go to Back","BookingInfo");

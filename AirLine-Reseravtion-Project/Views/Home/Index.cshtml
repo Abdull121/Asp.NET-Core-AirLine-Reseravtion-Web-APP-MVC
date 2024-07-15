@@ -1,0 +1,254 @@
+﻿@model CommonModel.Module.BookingModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    /* Adjusting the layout of the form */
+    .form-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    button.btn {
+        width: 100%;
+    }
+</style>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="./Assets/hero-img.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Say Yes to The World</h3>
+                <p>enjoy & live a new full life.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./Assets/pexels-pixabay-358220.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Best Air Line Services</h5>
+                <p>Best Air Line Services in the world.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./Assets/pexels-pixabay-358319.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Cheap Flights Ticket Price</h5>
+                <p>AirLine_Reservation guarantees to provide the best rate for airline tickets..</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<div class="main-content m-5 text-center ">
+    <h1 class="m-5">It’s more than just a trip</h1>
+
+
+    <!---Form-->
+
+    <form asp-controller="Home" asp-action="Index" method="post">
+        <input type="hidden" asp-for="FlightId" value="0" />
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <select asp-for="DepartureCity" class="form-control" style="cursor:pointer">
+                    <option value="" selected disabled hidden>Flying Where?</option>
+                    <option value="Lahore">Lahore, Pakistan</option>
+                    <option value="Islamabad">Islamabad, Pakistan</option>
+                    <option value="Karachi">Karachi, Pakistan</option>
+                    <option value="Multan">Multan, Pakistan</option>
+                </select>
+                <span asp-validation-for="DepartureCity" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <select asp-for="ArrivalCity" class="form-control" style="cursor:pointer">
+                    <option value="" selected disabled hidden>Where to?</option>
+                    <option value="Madinah">Madinah, Saudi Arabia</option>
+                    <option value="Jeddah">Jeddah, Saudi Arabia</option>
+                    <option value="Toronto">Toronto, Canada</option>
+                    <option value="New York">New York, United States</option>
+                </select>
+                <span asp-validation-for="ArrivalCity" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <input asp-for="DepartureTime" class="form-control" type="date" />
+                <span asp-validation-for="DepartureTime" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <input asp-for="ArrivalTime" class="form-control" type="date" />
+                <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <select asp-for="Class" class="form-control" style="cursor:pointer">
+                    <option value="" selected disabled hidden>Class</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Premium">Premium Economy</option>
+                    <option value="Business">Business</option>
+                </select>
+                <span asp-validation-for="Class" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <button type="submit" id="search" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} // help catch errors before the form is submitted to the server.
+    }
+
+
+
+</div>
+
+
+
+
+
+
+<div class=" container flight-deals">
+    <h5 class=" mb-5">Find your next adventure with these <span id="flightDeals">flight deals</span> </h5>
+
+    <!--bootsrap Cards-->
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center">
+        <a class="col w-25 text-decoration-none" href="#">
+
+            <div class="card h-100">
+                <img src="./Assets/image-1.jpg" class="card-img-top" alt="card1" />
+                <div class="card-body">
+                    <h5 class="card-title">The Bund, Shanghai</h5>
+                    <p class="card-text">China’s most international city.</p>
+                </div>
+            </div>
+
+        </a>
+
+        <a class="col w-25 text-decoration-none" href="#">
+
+            <div class="card h-100">
+                <img src="./Assets/image-2.jpg" class="card-img-top" alt="card2" />
+                <div class="card-body">
+                    <h5 class="card-title">Sydney Opera House, Sydney</h5>
+                    <p class="card-text">Take a stroll along the famous harbor.</p>
+                </div>
+            </div>
+
+        </a>
+
+        <a class="col w-25 text-decoration-none" href="#">
+
+            <div class="card h-100 ">
+                <img src="./Assets/image.jpg" class="card-img-top" alt="card example" />
+                <div class="card-body">
+                    <h5 class="card-title">Kōdaiji Temple, Kyoto</h5>
+                    <p class="card-text">Step back in time in the Gion district.</p>
+                </div>
+            </div>
+
+        </a>
+
+
+        <br />
+
+        <a class="card mb-3 w-75 p-0 text-decoration-none " href="#">
+
+            <img src="./Assets/image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Tsavo East National Park, Kenya</h5>
+                <p class="card-text">Named after the Tsavo River, and opened in April 1984, Tsavo East National Park is one of the oldest parks in Kenya. It is located in the semi-arid Taru Desert..</p>
+
+            </div>
+
+        </a>
+
+
+
+    </div>
+
+
+</div>
+
+
+<!-----Expploerer new places-->
+
+<div class=" container flight-deals">
+    <h5 class=" mb-3">Explore unique <span id="flightDeals">places to stay</span> </h5>
+
+    <!--bootsrap Cards-->
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center">
+
+        <a class="col w-25 text-decoration-none" href="#">
+            <div class="card h-100">
+                <img src="./Assets/Card/image-1.jpg" class="card-img-top" alt="card1" />
+                <div class="card-body">
+                    <h5 class="card-title">Stay among the atolls in Maldives</h5>
+                    <p class="card-text">From the 2nd century AD, the islands were known as the 'Money Isles' due to the abundance of cowry shells, a currency of the early ages..</p>
+                </div>
+
+            </div>
+        </a>
+
+        <a class="col w-25 text-decoration-none" href="#">
+            <div class="card h-100">
+                <img src="./Assets/Card/image-2.jpg" class="card-img-top" alt="card2" />
+                <div class="card-body">
+                    <h5 class="card-title">Experience the Ourika Valley in Morocco</h5>
+                    <p class="card-text">Morocco’s Hispano-Moorish architecture blends influences from Berber culture, Spain, and contemporary artistic currents in the Middle East..</p>
+                </div>
+            </div>
+        </a>
+
+
+        <a class="col w-25 text-decoration-none" href="#">
+
+            <div class="card h-100 ">
+                <img src="./Assets/Card/image.jpg" class="card-img-top" alt="card example" />
+                <div class="card-body">
+                    <h5 class="card-title">Live traditionally in Mongolia</h5>
+                    <p class="card-text">Traditional Mongolian yurts consists of an angled latticework of wood or bamboo for walls, ribs, and a wheel.</p>
+                </div>
+            </div>
+        </a>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+

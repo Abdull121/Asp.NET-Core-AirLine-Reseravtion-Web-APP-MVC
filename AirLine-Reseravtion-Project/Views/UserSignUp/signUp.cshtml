@@ -1,0 +1,53 @@
+﻿@model CommonModel.Module.SignUpformModel;
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+
+
+
+<div class="signupForm">
+    <div class="signupcontainer" style="max-width: 400px">
+
+        <form asp-controller="UserSignUp" asp-action="SignUp" method="post" class="signup-form">
+            <h2>Sign Up</h2>
+            <p>Please fill in this form to create an account!</p>
+
+            <div class="form-group">
+                <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="terms">
+                    <input asp-for="TermsAccepted" type="checkbox" />
+                    <span style="color:red">I accept the</span> <a href="#">Terms of Use & Privacy Policy</a>.
+                </label>
+                <span asp-validation-for="TermsAccepted" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <p class="login-link">Already have an account? <a href="#">Login here</a>.</p>
+        </form>
+    </div>
+</div>

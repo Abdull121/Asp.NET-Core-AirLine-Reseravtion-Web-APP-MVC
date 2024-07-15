@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CommonModel.Module.BookingModel>
+
+
+@{
+    ViewData["Title"] = "FlightBooking";
+
+}
+
+<!-- Alert Message Section -->
+@if (TempData["Message"] != null)
+{
+    <div class="alert @(TempData["MessageType"] == "success" ? "alert-danger" : "alert-success") alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>}
+
+
+
+
+
+         
+
+
+
+<div class="col-12 formHeader">
+
+    <table id="RoleTable" class="table table-light table-striped table-hover display" style="width:100%">
+        <thead>
+            <tr>
+                <th>SrNo#</th>
+                <th>Departure City</th>
+                <th>Arrival City</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
+                <th>Class</th>
+                <th>Price</th>
+                <th class="text-center">
+                    <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="AddNewFlight" asp-route-Id="0">Add New Flight Ticket</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var count = 0;
+                foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.DepartureCity</td>
+                        <td>@item.ArrivalCity</td>
+                        <td>@item.DepartureTime.ToString("MM/dd/yyyy")</td>
+                        <td>@item.ArrivalTime.ToString("MM/dd/yyyy")</td>
+                        <td>@item.Class</td>
+                        <td>@item.Price</td> <!-- Format price as currency -->
+                        <td class="text-center">
+                            <div>
+                                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="UpdateBooking" asp-route-Id="@item.FlightId">Edit</a>
+                                <a class="btn btn-danger" asp-area="" asp-controller="Home" asp-action="DeleteBooking" asp-route-Id="@item.FlightId">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
